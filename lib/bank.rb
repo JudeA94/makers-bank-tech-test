@@ -5,6 +5,7 @@ class Bank
     @sort_code = sort_code
     @used_account_numbers = []
     @accounts = []
+    @transaction_history = []
   end
 
   attr_reader :sort_code
@@ -18,8 +19,8 @@ class Bank
   end
 
   def remove_account(account_number)
-    raise "That account doesn't exist" if @accounts.none? { |account| account.account_number == account_number }
-    @accounts.delete_if { |account| account.account_number == account_number }
+    raise "That account doesn't exist" if @accounts.none? { |account| account.details[:account_number] == account_number }
+    @accounts.delete_if { |account| account.details[:account_number] == account_number }
     @used_account_numbers.delete_if { |existing_number| existing_number == account_number }
   end
 

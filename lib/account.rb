@@ -3,9 +3,15 @@ class Account
     @name = name
     @sort_code = sort_code
     @account_number = account_number
+    @balance = 0
+    @transaction_history = []
   end
 
-  attr_reader :account_number, :sort_code
-  attr_accessor :name
+  attr_reader :balance, :transaction_history
+
+  def details
+    { name: @name, sort_code: @sort_code, account_number: @account_number }
+  end
+
 
 end
