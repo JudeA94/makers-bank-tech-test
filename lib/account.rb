@@ -32,7 +32,7 @@ class Account
   end
 
   def print_statement
-    statement = Statement.new(@transaction_history)
+    statement = Statement.new(@transaction_history, Kernel)
     statement.print
   end
 end

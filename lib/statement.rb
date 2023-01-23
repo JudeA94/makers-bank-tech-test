@@ -1,5 +1,6 @@
 class Statement
-  def initialize(transaction_history)
+  def initialize(transaction_history, io)
+    @io = io
     @transactions = transaction_history
   end
 
@@ -16,6 +17,6 @@ class Statement
   end
 
   def print
-    format_for_printing.each { |statement_line| puts statement_line }
+    format_for_printing.each { |statement_line| @io.puts statement_line }
   end
 end
