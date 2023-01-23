@@ -26,8 +26,9 @@ describe Account do
     end
     it 'adds a transaction to the history' do
       account = Account.new('Test Name', '11-22-33', '12345678')
-      account.deposit(100)
+      deposit = account.deposit(100)
       expect(account.transaction_history.length).to eq 1
+      expect(account.transaction_history[0]).to eq deposit
     end
   end
 

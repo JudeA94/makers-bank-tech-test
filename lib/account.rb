@@ -1,4 +1,5 @@
 require 'transaction'
+require 'statement'
 
 class Account
   def initialize(name, sort_code, account_number)
@@ -17,14 +18,21 @@ class Account
 
   def deposit(amount)
     @balance += amount
-    deposit = Transaction.new('deposit', amount)
+    deposit = Transaction.new('deposit', amount, @balance)
     @transaction_history.push(deposit)
+    deposit
   end
 
   def withdraw(amount)
     raise 'Insufficient funds' if amount > @balance
     @balance -= amount
-    withdrawel = Transaction.new('withdrawel', amount)
+    withdrawel = Transaction.new('withdrawel', amount, @balance)
     @transaction_history.push(withdrawel)
+    withdrawel
+  end
+
+  def print_statement
+    statement = Statement.new(@transaction_history)
+    statement.print
   end
 end

@@ -32,6 +32,7 @@ describe Bank do
       bank.remove_account(acc_number)
       expect(bank.accounts.length).to eq 0
     end
+    
     it "throws an error if the account doesn't exist" do
       bank = Bank.new('11-22-33')
       bank.create_account('Test Name')
