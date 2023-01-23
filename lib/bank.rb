@@ -1,3 +1,5 @@
+require 'account'
+
 class Bank
   def initialize(sort_code)
     @sort_code = sort_code
@@ -10,13 +12,14 @@ class Bank
 
   def create_account(name)
     account_number = create_account_number
-    @accounts.push({ name: name, sort_code: @sort_code, account_number: account_number })
+    account = Account.new(name, @sort_code, account_number)
+    @accounts.push(account)
+    return account
   end
 
   def remove_account(account_number)
-    raise "That account doesn't exist" if @accounts.none? { |account| account[:account_number] == account_number }
-
-    @accounts.delete_if { |account| account[:account_number] == account_number }
+    raise "That account doesn't exist" if @accounts.none? { |account| account.account_number == account_number }
+    @accounts.delete_if { |account| account.account_number == account_number }
     @used_account_numbers.delete_if { |existing_number| existing_number == account_number }
   end
 
