@@ -17,6 +17,7 @@ class Statement
   end
 
   def print
+    @io.puts 'date || credit || debit || balance'
     format_for_printing.each { |statement_line| @io.puts statement_line }
   end
 end

@@ -1,4 +1,4 @@
-require 'account'
+require_relative 'account'
 
 class Bank
   def initialize(sort_code)
