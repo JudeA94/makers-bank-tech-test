@@ -51,4 +51,13 @@ describe Account do
       expect(account.transaction_history.length).to eq 2
     end
   end
+
+  context 'print_statement method' do
+    it 'creates a new statement and calls it to print' do
+      fake_statement = double(:statement, print: 'test statement')
+      account = Account.new('Test Name', '11-22-33', '12345678')
+      allow(Statement).to receive(:new).and_return(fake_statement)
+      expect(account.print_statement).to eq 'test statement'
+    end
+  end
 end

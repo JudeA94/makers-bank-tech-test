@@ -8,10 +8,14 @@ class Statement
   def format_for_printing
     transactions.map do |transaction|
       if transaction.type == 'deposit'
-        "#{transaction.date} || #{sprintf("%.2f", transaction.amount)} || || #{sprintf("%.2f", transaction.balance)}"
+        "#{transaction.date} || #{format('%.2f', transaction.amount)} || || #{format('%.2f', transaction.balance)}"
       else
-        "#{transaction.date} || || #{sprintf("%.2f", transaction.amount)} || #{sprintf("%.2f", transaction.balance)}"
+        "#{transaction.date} || || #{format('%.2f', transaction.amount)} || #{format('%.2f', transaction.balance)}"
       end
     end
+  end
+
+  def print
+    format_for_printing.each { |statement_line| puts statement_line }
   end
 end
