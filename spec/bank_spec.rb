@@ -22,7 +22,7 @@ describe Bank do
       bank = Bank.new('11-22-33')
       bank.create_account('Test Name')
       expect(bank.accounts[0][:name]).to eq 'Test Name'
-      expect(bank.accounts[0][:account_number]).to be_a(Integer)
+      expect(bank.accounts[0][:account_number]).to be_a(String)
     end
   end
 
@@ -39,10 +39,17 @@ describe Bank do
       bank = Bank.new('11-22-33')
       bank.create_account('Test Name')
       expect(bank.accounts.length).to eq 1
-      acc_number = bank.accounts[0][:account_number]
-      expect { bank.remove_account(acc_number + 1) }.to raise_error "That account doesn't exist"
+      acc_number = bank.accounts[0][:account_number].to_i
+      wrong_account_num = (acc_number + 1).to_s
+      expect { bank.remove_account(wrong_account_num) }.to raise_error "That account doesn't exist"
       expect(bank.accounts.length).to eq 1
     end
   end
 
+  context 'create_account_number method' do
+    it 'generates a random eight digit number' do
+      bank = Bank.new('11-22-33')
+      expect(bank.create_account_number.length).to eq 8
+    end
+  end
 end
