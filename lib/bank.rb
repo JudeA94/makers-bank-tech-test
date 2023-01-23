@@ -5,7 +5,6 @@ class Bank
     @sort_code = sort_code
     @used_account_numbers = []
     @accounts = []
-    @transaction_history = []
   end
 
   attr_reader :sort_code
@@ -15,7 +14,7 @@ class Bank
     account_number = create_account_number
     account = Account.new(name, @sort_code, account_number)
     @accounts.push(account)
-    return account
+    account
   end
 
   def remove_account(account_number)

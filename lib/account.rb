@@ -17,10 +17,14 @@ class Account
 
   def deposit(amount)
     @balance += amount
-    deposit = Transaction.new('deposit', 100)
+    deposit = Transaction.new('deposit', amount)
     @transaction_history.push(deposit)
   end
 
-
-
+  def withdraw(amount)
+    raise 'Insufficient funds' if amount > @balance
+    @balance -= amount
+    withdrawel = Transaction.new('withdrawel', amount)
+    @transaction_history.push(withdrawel)
+  end
 end
