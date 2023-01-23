@@ -1,3 +1,5 @@
+require 'transaction'
+
 class Account
   def initialize(name, sort_code, account_number)
     @name = name
@@ -12,6 +14,13 @@ class Account
   def details
     { name: @name, sort_code: @sort_code, account_number: @account_number }
   end
+
+  def deposit(amount)
+    @balance += amount
+    deposit = Transaction.new('deposit', 100)
+    @transaction_history.push(deposit)
+  end
+
 
 
 end
