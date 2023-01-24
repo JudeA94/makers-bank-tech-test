@@ -10,11 +10,7 @@ class Account
     @transaction_history = []
   end
 
-  attr_reader :balance, :transaction_history
-
-  def details
-    { name: @name, sort_code: @sort_code, account_number: @account_number }
-  end
+  attr_reader :balance, :transaction_history, :name, :sort_code, :account_number
 
   def deposit(amount)
     @balance += amount
