@@ -15,8 +15,6 @@ describe Bank do
   context 'create_account method' do
     it 'adds an account to the accounts list' do
       bank = Bank.new('11-22-33')
-      bank.create_account('Test Name')
-      bank = Bank.new('11-22-33')
       account = bank.create_account('Test Name')
       expect(bank.accounts.length).to eq 1
       expect(bank.accounts[0]).to eq account
